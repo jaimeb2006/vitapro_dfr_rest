@@ -1,0 +1,7 @@
+django
+djangorestframework
+djangorestframework-simplejwt
+drf-spectacular
+drf-extensions
+psycopg2
+django-cors-headers
