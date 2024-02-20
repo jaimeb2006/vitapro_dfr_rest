@@ -1,9 +1,8 @@
-from django.shortcuts import render
 
 # Create your views here.
 
 from drf_spectacular.utils import extend_schema , extend_schema_view
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 
 # from api.serializers import TaskSerializer, ProductoSerializer
 from api.serializers import  ProductoSerializer
@@ -20,5 +19,7 @@ from api.models import  Producto
 #     queryset = Task.objects.all()
 
 class ProductoViewSet(viewsets.ModelViewSet):
+    search_fields = ['nombre_producto', 'sku', 'id_fb', 'ean']
+    filter_backends = (filters.SearchFilter,)
     serializer_class = ProductoSerializer
     queryset = Producto.objects.all()

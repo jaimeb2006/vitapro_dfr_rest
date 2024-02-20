@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from api.views import ProductoViewSet
 router:ExtendedSimpleRouter= ExtendedSimpleRouter()
 # router.register(r"tasks", TaskViewSet)
-router.register(r"products", ProductoViewSet)
+router.register(r"productos", ProductoViewSet)
 
 urlpatterns = [
     path('schema/',SpectacularAPIView. as_view(), name= 'schema'),
