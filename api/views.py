@@ -5,8 +5,8 @@ from drf_spectacular.utils import extend_schema , extend_schema_view
 from rest_framework import viewsets, filters
 
 # from api.serializers import TaskSerializer, ProductoSerializer
-from api.serializers import  ProductoSerializer
-from api.models import  Producto
+from api.serializers import  OrdenProduccionSerializer, ProductoSerializer
+from api.models import  OrdenProduccion, Producto
 @extend_schema_view(
     list= extend_schema(description= 'Pernite obtener una lista de Productos.'),
     retrieve=extend_schema(description= 'Permite obtener una Producto.'),
@@ -23,3 +23,9 @@ class ProductoViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     serializer_class = ProductoSerializer
     queryset = Producto.objects.all()
+
+class OrdenProduccionViewSet(viewsets.ModelViewSet):
+    search_fields = ['id','lote_completo','lote_numeros','turno','nombre_producto', 'sku', 'ean']
+    filter_backends = (filters.SearchFilter,)
+    serializer_class = OrdenProduccionSerializer
+    queryset = OrdenProduccion.objects.all()
