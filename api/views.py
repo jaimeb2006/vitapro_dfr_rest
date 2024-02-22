@@ -14,9 +14,6 @@ from api.models import  OrdenProduccion, Producto
     update=extend_schema (description='Pernite actualizar una Producto.'),
     destroy=extend_schema(description ='Pernite eliminar una Producto.'),
 )
-# class TaskViewSet(viewsets.ModelViewSet):
-#     serializer_class = TaskSerializer
-#     queryset = Task.objects.all()
 
 class ProductoViewSet(viewsets.ModelViewSet):
     search_fields = ['nombre_producto', 'sku', 'id_fb', 'ean']
@@ -24,6 +21,13 @@ class ProductoViewSet(viewsets.ModelViewSet):
     serializer_class = ProductoSerializer
     queryset = Producto.objects.all()
 
+@extend_schema_view(
+    list=extend_schema(description='Permite obtener una lista de Ordenes de Producción.'),
+    retrieve=extend_schema(description='Permite obtener una Orden de Producción específica.'),
+    create=extend_schema(description='Permite crear una Orden de Producción.'),
+    update=extend_schema(description='Permite actualizar una Orden de Producción.'),
+    destroy=extend_schema(description='Permite eliminar una Orden de Producción.'),
+)
 class OrdenProduccionViewSet(viewsets.ModelViewSet):
     search_fields = ['id','lote_completo','lote_numeros','turno','nombre_producto', 'sku', 'ean']
     filter_backends = (filters.SearchFilter,)
