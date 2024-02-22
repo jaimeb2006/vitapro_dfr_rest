@@ -89,7 +89,7 @@ class OrdenProduccion(models.Model):
     prensa = models.CharField(max_length=2, blank=True, null=True)
     prensa_numero = models.IntegerField(blank=True, null=True)  # prensa_numero
     linea = models.CharField(max_length=50)
-    lote_completo = models.BooleanField(default=False)
-    lote_numeros = models.CharField(max_length=100, blank=True, null=True)
-    turno = models.CharField(max_length=20)
+    lote_completo = models.CharField(max_length=20, blank=True, null=True)
+    lote_numeros = models.IntegerField()
+    turno = models.IntegerField()
 
