@@ -39,4 +39,4 @@ class OrdenProduccionViewSet(viewsets.ModelViewSet):
 
 def current_date(request):
     now = datetime.now()
-    return JsonResponse({'current_date': now.strftime('%y-%m-%d')})
+    return JsonResponse({'current_date': now})
