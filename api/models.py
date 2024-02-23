@@ -92,4 +92,9 @@ class OrdenProduccion(models.Model):
     lote_completo = models.CharField(max_length=20, blank=True, null=True)
     lote_numeros = models.IntegerField()
     turno = models.IntegerField()
+    sscc_inicio = models.CharField(max_length=30, blank=True, null=True)
+    inicio_contador = models.IntegerField(blank=True, null=True)
+
+    
+
 
