@@ -1,6 +1,8 @@
 
 # Create your views here.
 
+from django.http import JsonResponse
+from datetime import datetime
 from drf_spectacular.utils import extend_schema , extend_schema_view
 from rest_framework import viewsets, filters
 
@@ -33,3 +35,8 @@ class OrdenProduccionViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     serializer_class = OrdenProduccionSerializer
     queryset = OrdenProduccion.objects.all()
+
+
+def current_date(request):
+    now = datetime.now()
+    return JsonResponse({'current_date': now.strftime('%y-%m-%d')})
