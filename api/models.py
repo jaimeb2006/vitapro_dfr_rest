@@ -44,6 +44,8 @@ class Producto(models.Model):
     id_ubicacion = models.IntegerField()
     nombre_ubicacion = models.CharField(max_length=10)
     estado = models.CharField(max_length=10)
+   
+
 
 
 class OrdenProduccion(models.Model):
@@ -95,6 +97,8 @@ class OrdenProduccion(models.Model):
     inicio_contador_general = models.IntegerField(blank=True, null=True)
     sscc_inicio = models.CharField(max_length=30, blank=True, null=True)
     inicio_contador = models.IntegerField(blank=True, null=True)
+    id_producto = models.IntegerField(blank=True, null=True)
+    id_fb_producto = models.CharField(max_length=20, null=True )
 
     
 
