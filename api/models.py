@@ -99,7 +99,7 @@ class OrdenProduccion(models.Model):
     inicio_contador = models.IntegerField(blank=True, null=True)
     id_producto = models.IntegerField(blank=True, null=True)
     id_fb_producto = models.CharField(max_length=20, null=True )
-
-    
+    fin_contador_general = models.IntegerField(blank=True, null=True)
+    fin_contador = models.IntegerField(blank=True, null=True)
 
 
