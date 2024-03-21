@@ -44,9 +44,6 @@ class Producto(models.Model):
     id_ubicacion = models.IntegerField()
     nombre_ubicacion = models.CharField(max_length=10)
     estado = models.CharField(max_length=10)
-   
-
-
 
 class OrdenProduccion(models.Model):
     id = models.AutoField(primary_key=True)
@@ -101,5 +98,6 @@ class OrdenProduccion(models.Model):
     id_fb_producto = models.CharField(max_length=20, null=True )
     fin_contador_general = models.IntegerField(blank=True, null=True)
     fin_contador = models.IntegerField(blank=True, null=True)
+    fecha_caducidad_string = models.CharField(max_length=10, blank=True, null=True)
 
 
