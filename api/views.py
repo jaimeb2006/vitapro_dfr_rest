@@ -33,6 +33,8 @@ class OrdenProduccionFilter(django_filters.FilterSet):
         fields = {
             'turno': ['exact', 'icontains'],
             'lote_completo': ['exact', 'icontains'],
+            'id_producto': ['exact', 'icontains'],
+            'linea': ['exact', 'icontains'],
             # Puedes añadir más campos y tipos de filtro aquí
         }
 
@@ -49,8 +51,8 @@ class OrdenProduccionViewSet(viewsets.ModelViewSet):
     serializer_class = OrdenProduccionSerializer
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filterset_class = OrdenProduccionFilter
-    ordering_fields = ['fecha_final']
-    ordering = ['-fecha_final'] 
+    ordering_fields = ['id']
+    ordering = ['-id'] 
 
 
 def current_date(request):
