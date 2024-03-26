@@ -9,6 +9,9 @@ from rest_framework import viewsets, filters
 # from api.serializers import TaskSerializer, ProductoSerializer
 from api.serializers import  OrdenProduccionSerializer, ProductoSerializer
 from api.models import  OrdenProduccion, Producto
+
+from django_filters.rest_framework import DjangoFilterBackend
+import django_filters
 @extend_schema_view(
     list= extend_schema(description= 'Pernite obtener una lista de Productos.'),
     retrieve=extend_schema(description= 'Permite obtener una Producto.'),
@@ -23,6 +26,16 @@ class ProductoViewSet(viewsets.ModelViewSet):
     serializer_class = ProductoSerializer
     queryset = Producto.objects.all()
 
+
+class OrdenProduccionFilter(django_filters.FilterSet):
+    class Meta:
+        model = OrdenProduccion
+        fields = {
+            'turno': ['exact', 'icontains'],
+            'lote_completo': ['exact', 'icontains'],
+            # Puedes añadir más campos y tipos de filtro aquí
+        }
+
 @extend_schema_view(
     list=extend_schema(description='Permite obtener una lista de Ordenes de Producción.'),
     retrieve=extend_schema(description='Permite obtener una Orden de Producción específica.'),
@@ -31,10 +44,11 @@ class ProductoViewSet(viewsets.ModelViewSet):
     destroy=extend_schema(description='Permite eliminar una Orden de Producción.'),
 )
 class OrdenProduccionViewSet(viewsets.ModelViewSet):
-    search_fields = ['id','lote_completo','lote_numeros','turno','nombre_producto', 'sku', 'ean']
-    filter_backends = (filters.SearchFilter,)
-    serializer_class = OrdenProduccionSerializer
+    # search_fields = ['id','lote_completo','lote_numeros','turno','nombre_producto', 'sku', 'ean','turno']
     queryset = OrdenProduccion.objects.all()
+    serializer_class = OrdenProduccionSerializer
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter,)
+    filterset_class = OrdenProduccionFilter
 
 
 def current_date(request):
