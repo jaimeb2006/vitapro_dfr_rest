@@ -47,8 +47,10 @@ class OrdenProduccionViewSet(viewsets.ModelViewSet):
     # search_fields = ['id','lote_completo','lote_numeros','turno','nombre_producto', 'sku', 'ean','turno']
     queryset = OrdenProduccion.objects.all()
     serializer_class = OrdenProduccionSerializer
-    filter_backends = (DjangoFilterBackend, filters.SearchFilter,)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filterset_class = OrdenProduccionFilter
+    ordering_fields = ['fecha_final']
+    ordering = ['-fecha_final'] 
 
 
 def current_date(request):
