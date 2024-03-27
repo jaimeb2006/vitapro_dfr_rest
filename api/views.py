@@ -7,8 +7,8 @@ from drf_spectacular.utils import extend_schema , extend_schema_view
 from rest_framework import viewsets, filters
 
 # from api.serializers import TaskSerializer, ProductoSerializer
-from api.serializers import  OrdenProduccionSerializer, ProductoSerializer
-from api.models import  OrdenProduccion, Producto
+from api.serializers import  OrdenProduccionSerializer, PaletSerializer, ProductoSerializer
+from api.models import  OrdenProduccion, Palet, Producto
 
 from django_filters.rest_framework import DjangoFilterBackend
 import django_filters
@@ -51,6 +51,35 @@ class OrdenProduccionViewSet(viewsets.ModelViewSet):
     serializer_class = OrdenProduccionSerializer
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filterset_class = OrdenProduccionFilter
+    ordering_fields = ['id']
+    ordering = ['-id'] 
+
+
+
+class PaletFilter(django_filters.FilterSet):
+    class Meta:
+        model = Palet
+        fields = {
+            'lote_completo': ['exact', 'icontains'],
+            'subido_a_firebase': ['exact', 'icontains'],
+            'subido_a_vitacontrol': ['exact', 'icontains'],
+            'id': ['exact', 'icontains'],
+            # Puedes añadir más campos y tipos de filtro aquí
+        }
+
+@extend_schema_view(
+    list=extend_schema(description='Permite obtener una lista de Palets'),
+    retrieve=extend_schema(description='Permite obtener una Orden de Palet específica.'),
+    create=extend_schema(description='Permite crear una Palet.'),
+    update=extend_schema(description='Permite actualizar una Palet.'),
+    destroy=extend_schema(description='Permite eliminar una Palet.'),
+)
+class PaletViewSet(viewsets.ModelViewSet):
+    # search_fields = ['id','lote_completo','lote_numeros','turno','nombre_producto', 'sku', 'ean','turno']
+    queryset = Palet.objects.all()
+    serializer_class = PaletSerializer
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
+    filterset_class = PaletFilter
     ordering_fields = ['id']
     ordering = ['-id'] 
 
