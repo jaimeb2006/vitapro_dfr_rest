@@ -132,3 +132,5 @@ class Palet(models.Model):
     id_orden_produccion = models.IntegerField()
     subido_a_firebase = models.BooleanField()
     subido_a_vitacontrol = models.BooleanField()
+    fecha_caducidad_string = models.CharField(max_length=10, blank=True, null=True)
+    
