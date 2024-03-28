@@ -106,7 +106,7 @@ class Palet(models.Model):
     id_fb = models.CharField(max_length=50)
     sku = models.CharField(max_length=25)
     nombre_producto = models.CharField(max_length=100)
-    ean13 = models.CharField(max_length=30)
+    ean13 = models.CharField(max_length=100)
     planta_primaria = models.CharField(max_length=10)
     linea = models.CharField(max_length=5)
     llenadora = models.CharField(max_length=5)
@@ -133,4 +133,3 @@ class Palet(models.Model):
     subido_a_firebase = models.BooleanField()
     subido_a_vitacontrol = models.BooleanField()
     fecha_caducidad_string = models.CharField(max_length=10, blank=True, null=True)
-    
