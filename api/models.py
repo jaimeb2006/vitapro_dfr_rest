@@ -100,6 +100,7 @@ class OrdenProduccion(models.Model):
     fin_contador_general = models.IntegerField(blank=True, null=True)
     fin_contador = models.IntegerField(blank=True, null=True)
     fecha_caducidad_string = models.CharField(max_length=10, blank=True, null=True)
+    subido_a_firebase = models.BooleanField(default=False)
 
 
 class Palet(models.Model):
