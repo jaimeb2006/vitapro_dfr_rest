@@ -47,6 +47,7 @@ class Producto(models.Model):
 
 class OrdenProduccion(models.Model):
     id = models.AutoField(primary_key=True)
+    id_fb = models.CharField(max_length=50,blank=True, null=True)
     sku = models.CharField(max_length=20)
     planta_primaria = models.CharField(max_length=10)
     nombre_producto = models.CharField(max_length=100)
