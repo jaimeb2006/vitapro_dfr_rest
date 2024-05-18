@@ -54,6 +54,12 @@ class OrdenProduccionViewSet(viewsets.ModelViewSet):
     ordering_fields = ['id']
     ordering = ['-id'] 
 
+    def get_queryset(self):
+        # Filtra primero y luego limita el queryset
+        queryset = OrdenProduccion.objects.all().order_by('id')
+        filtered_queryset = self.filter_queryset(queryset)
+        return filtered_queryset
+
 
 
 class PaletFilter(django_filters.FilterSet):
