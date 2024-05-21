@@ -101,6 +101,7 @@ class OrdenProduccion(models.Model):
     fin_contador = models.IntegerField(blank=True, null=True)
     fecha_caducidad_string = models.CharField(max_length=10, blank=True, null=True)
     subido_a_firebase = models.BooleanField(default=False)
+    inicio_contador_string = models.CharField(max_length=10,  default='0001')
 
 
 class Palet(models.Model):
@@ -136,3 +137,5 @@ class Palet(models.Model):
     subido_a_vitacontrol = models.BooleanField()
     fecha_caducidad_string = models.CharField(max_length=10, blank=True, null=True)
     peso_neto_terciaria = models.CharField(max_length=10,  default='1650 KG')
+    linea_letra = models.CharField(max_length=10,  default='3B')
+    numero_palet_string = models.CharField(max_length=10,  default='0001')
