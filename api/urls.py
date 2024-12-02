@@ -5,13 +5,13 @@ from rest_framework_extensions.routers import ExtendedSimpleRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from api import views
 
-from api.views import OrdenProduccionViewSet, PaletViewSet, ProductoViewSet
+from api.views import OrdenProduccionViewSet, PaletViewSet, ProductoViewSet, TurnoViewSet
 router:ExtendedSimpleRouter= ExtendedSimpleRouter()
 # router.register(r"tasks", TaskViewSet)
 router.register(r"productos", ProductoViewSet)
 router.register(r"ordenproduccion", OrdenProduccionViewSet)
 router.register(r"palets", PaletViewSet)
-router.register(r"turno", PaletViewSet)
+router.register(r"turno", TurnoViewSet)
 
 urlpatterns = [
     path('schema/',SpectacularAPIView. as_view(), name= 'schema'),
