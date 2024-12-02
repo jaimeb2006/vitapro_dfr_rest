@@ -91,7 +91,7 @@ class OrdenProduccion(models.Model):
     id_fb_producto = models.CharField(max_length=20, null=True )
     fecha_caducidad_string = models.CharField(max_length=10, blank=True, null=True)
     subido_a_firebase = models.BooleanField(default=False)
-    # subido_a_vitacontrol = models.BooleanField(default=False)
+    subido_a_vitacontrol = models.BooleanField(default=False)
     
     #parametros de contadores
     sku = models.CharField(max_length=20)
