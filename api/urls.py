@@ -20,5 +20,6 @@ urlpatterns = [
     path('token/refresh/',TokenRefreshView.as_view(), name= 'token_refresh'),
     path('token/verify/',TokenVerifyView.as_view(), name='token_refresh'),
     path('current-date/', views.current_date, name='current-date'),
+    path('get-horas-corte/', views.get_horas_corte, name='get-horas-corte'),
     path('',include (router.urls)),
 ]

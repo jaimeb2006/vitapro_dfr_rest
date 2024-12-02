@@ -127,3 +127,8 @@ class TurnoViewSet(viewsets.ModelViewSet):
 def current_date(request):
     now = datetime.now()
     return JsonResponse({'current_date': now})
+
+
+def get_horas_corte(request):
+    horas = [7, 15,23]
+    return JsonResponse({'horas': horas})
