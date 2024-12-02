@@ -103,6 +103,7 @@ class OrdenProduccion(models.Model):
     subido_a_firebase = models.BooleanField(default=False)
     inicio_contador_string = models.CharField(max_length=10,  default='0001')
     subido_a_vitacontrol = models.BooleanField(default=False)
+    fecha_continuar = models.DateTimeField(auto_now=True)
 
 class Palet(models.Model):
     id = models.AutoField(primary_key=True)
