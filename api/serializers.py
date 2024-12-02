@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import OrdenProduccion, Palet, Producto
+from .models import OrdenProduccion, Palet, Producto, Turno
 
 
 class ProductoSerializer(serializers.ModelSerializer):
@@ -20,5 +20,5 @@ class PaletSerializer(serializers.ModelSerializer):
 
 class TurnoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Palet
+        model = Turno
         fields = "__all__"
