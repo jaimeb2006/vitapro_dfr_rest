@@ -17,3 +17,8 @@ class PaletSerializer(serializers.ModelSerializer):
     class Meta:
         model = Palet
         fields = "__all__"
+
+class TurnoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Palet
+        fields = "__all__"

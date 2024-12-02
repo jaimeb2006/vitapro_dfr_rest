@@ -11,6 +11,7 @@ router:ExtendedSimpleRouter= ExtendedSimpleRouter()
 router.register(r"productos", ProductoViewSet)
 router.register(r"ordenproduccion", OrdenProduccionViewSet)
 router.register(r"palets", PaletViewSet)
+router.register(r"turno", PaletViewSet)
 
 urlpatterns = [
     path('schema/',SpectacularAPIView. as_view(), name= 'schema'),

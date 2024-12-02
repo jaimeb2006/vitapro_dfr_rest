@@ -7,8 +7,8 @@ from drf_spectacular.utils import extend_schema , extend_schema_view
 from rest_framework import viewsets, filters
 
 # from api.serializers import TaskSerializer, ProductoSerializer
-from api.serializers import  OrdenProduccionSerializer, PaletSerializer, ProductoSerializer
-from api.models import  OrdenProduccion, Palet, Producto
+from api.serializers import  OrdenProduccionSerializer, PaletSerializer, ProductoSerializer, TurnoSerializer
+from api.models import  OrdenProduccion, Palet, Producto, Turno
 
 from django_filters.rest_framework import DjangoFilterBackend
 import django_filters
@@ -88,6 +88,40 @@ class PaletViewSet(viewsets.ModelViewSet):
     filterset_class = PaletFilter
     ordering_fields = ['id']
     ordering = ['-id'] 
+
+class TurnoFilter(django_filters.FilterSet):
+    class Meta:
+        model = Turno
+        fields = {
+            'linea': ['exact', 'icontains'],
+            'estado': ['exact', 'icontains'],
+            'turno': ['exact', 'icontains'],
+            'fecha_creacion': ['exact', 'gte', 'lte'],
+            'fecha_final': ['exact', 'gte', 'lte'],
+            'fecha_dia_creacion_string': ['exact', 'icontains'],  # Filtro para este campo
+        }
+
+@extend_schema_view(
+    list=extend_schema(description='Permite obtener una lista de Turnos.'),
+    retrieve=extend_schema(description='Permite obtener un Turno específico.'),
+    create=extend_schema(description='Permite crear un Turno.'),
+    update=extend_schema(description='Permite actualizar un Turno.'),
+    destroy=extend_schema(description='Permite eliminar un Turno.'),
+)
+class TurnoViewSet(viewsets.ModelViewSet):
+    queryset = Turno.objects.all()
+    serializer_class = TurnoSerializer
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
+    filterset_class = TurnoFilter
+    ordering_fields = ['id', 'fecha_creacion', 'fecha_final', 'turno', 'fecha_dia_creacion_string']
+    ordering = ['-id']  # Orden predeterminado por ID descendente
+
+    def get_queryset(self):
+        # Filtra primero y luego limita el queryset
+        queryset = Turno.objects.all().order_by('id')
+        filtered_queryset = self.filter_queryset(queryset)
+        return filtered_queryset
+
 
 
 def current_date(request):
