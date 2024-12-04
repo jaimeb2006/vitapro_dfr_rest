@@ -44,6 +44,7 @@ class Producto(models.Model):
     id_ubicacion = models.IntegerField()
     nombre_ubicacion = models.CharField(max_length=10)
     estado = models.CharField(max_length=10)
+    id_vitacontrol = models.CharField(max_length=15,  default='')
 
 class OrdenProduccion(models.Model):
     id = models.AutoField(primary_key=True)
@@ -104,6 +105,10 @@ class OrdenProduccion(models.Model):
     inicio_contador_string = models.CharField(max_length=10,  default='0001')
     subido_a_vitacontrol = models.BooleanField(default=False)
     fecha_continuar = models.DateTimeField(auto_now=True)
+    id_vitacontrol = models.CharField(max_length=15,  default='')
+    actualizado_a_vitacontrol = models.BooleanField(default=False)
+    actualizado_a_firebase = models.BooleanField(default=False)
+    libre = models.BooleanField(default=False)
 
 class Palet(models.Model):
     id = models.AutoField(primary_key=True)
@@ -140,6 +145,7 @@ class Palet(models.Model):
     peso_neto_terciaria = models.CharField(max_length=10,  default='1650 KG')
     linea_letra = models.CharField(max_length=10,  default='3B')
     numero_palet_string = models.CharField(max_length=10,  default='0001')
+    id_vitacontrol = models.CharField(max_length=15,  default='')
 
 
 class Turno(models.Model):
