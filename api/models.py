@@ -147,6 +147,8 @@ class Palet(models.Model):
     numero_palet_string = models.CharField(max_length=10,  default='0001')
     id_vitacontrol = models.CharField(max_length=15,  default='', blank=True, null=True)
     codigo_bodega_actual = models.CharField(max_length=10,  default='0')
+    id_producto = models.IntegerField(blank=True, null=True)
+    id_fb_producto = models.CharField(max_length=20, null=True )
 
 
 class Turno(models.Model):

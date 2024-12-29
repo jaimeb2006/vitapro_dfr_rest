@@ -76,6 +76,7 @@ class PaletFilter(django_filters.FilterSet):
             'id_bodega_origen': ['exact', 'icontains'],
             'turno': ['exact', 'icontains'],
             'id_producto': ['exact', 'icontains'],
+            'id_fb_producto': ['exact', 'icontains'],
             'fecha_elaboracion': ['exact', 'gte', 'lte'],
             'fecha_caducidad': ['exact', 'gte', 'lte'],
             'fecha_creacion': ['exact', 'gte', 'lte'],
