@@ -70,6 +70,18 @@ class PaletFilter(django_filters.FilterSet):
             'subido_a_firebase': ['exact', 'icontains'],
             'subido_a_vitacontrol': ['exact', 'icontains'],
             'id': ['exact', 'icontains'],
+            'sscc': ['exact', 'icontains'],
+            'linea': ['exact', 'icontains'],
+            'id_bodega_destino': ['exact', 'icontains'],
+            'id_bodega_origen': ['exact', 'icontains'],
+            'turno': ['exact', 'icontains'],
+            'id_producto': ['exact', 'icontains'],
+            'fecha_elaboracion': ['exact', 'gte', 'lte'],
+            'fecha_caducidad': ['exact', 'gte', 'lte'],
+            'fecha_creacion': ['exact', 'gte', 'lte'],
+            'sku': ['exact', 'icontains'],
+            'llenadora': ['exact', 'icontains'],
+            'prensa': ['exact', 'icontains'],
             # Puedes añadir más campos y tipos de filtro aquí
         }
 

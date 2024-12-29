@@ -130,9 +130,9 @@ class Palet(models.Model):
     numero_palet = models.IntegerField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
-    id_bodega_origen = models.IntegerField()
-    id_bodega_destino = models.IntegerField()
-    movimientos_id = ArrayField(models.IntegerField(), blank=True, default=list)
+    id_bodega_origen = models.CharField(max_length=10,  default='0')
+    id_bodega_destino = models.CharField(max_length=10,  default='0')
+    movimientos_id = ArrayField(models.CharField(max_length=10,  default='0'), blank=True, default=list)
     movimientos_nombre = ArrayField(models.CharField(max_length=100), blank=True, default=list)
     fechas_movimientos = ArrayField(models.DateTimeField(), blank=True, default=list)
     usuarios_movimientos = ArrayField(models.CharField(max_length=50), blank=True, default=list)
@@ -146,6 +146,7 @@ class Palet(models.Model):
     linea_letra = models.CharField(max_length=10,  default='3B')
     numero_palet_string = models.CharField(max_length=10,  default='0001')
     id_vitacontrol = models.CharField(max_length=15,  default='', blank=True, null=True)
+    codigo_bodega_actual = models.CharField(max_length=10,  default='0')
 
 
 class Turno(models.Model):
