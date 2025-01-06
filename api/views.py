@@ -5,7 +5,6 @@ from django.http import JsonResponse
 from datetime import datetime
 from drf_spectacular.utils import extend_schema , extend_schema_view
 from rest_framework import viewsets, filters
-from rest_framework.pagination import LimitOffsetPagination
 
 # from api.serializers import TaskSerializer, ProductoSerializer
 from api.serializers import  OrdenProduccionSerializer, PaletSerializer, ProductoSerializer, TurnoSerializer
@@ -61,9 +60,7 @@ class OrdenProduccionViewSet(viewsets.ModelViewSet):
         filtered_queryset = self.filter_queryset(queryset)
         return filtered_queryset
 
-class PaletPagination(LimitOffsetPagination):
-    default_limit = 5  # Límite por defecto si no se especifica en la consulta
-    max_limit = 100    # Límite máximo permitido
+
 
 class PaletFilter(django_filters.FilterSet):
     class Meta:
@@ -103,8 +100,7 @@ class PaletViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     filterset_class = PaletFilter
     ordering_fields = ['id']
-    ordering = ['-id']
-    pagination_class = PaletPagination
+    ordering = ['-id'] 
 
 class TurnoFilter(django_filters.FilterSet):
     class Meta:

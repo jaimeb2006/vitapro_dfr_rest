@@ -166,8 +166,6 @@ REST_FRAMEWORK: Dict[str, Any] = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10,  # Tamaño de página por defecto
 }
 # django-spectacular settings
 SPECTACULAR_SETTINGS = {
