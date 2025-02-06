@@ -1,4 +1,3 @@
-from django.utils import timezone
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
@@ -38,8 +37,8 @@ class Producto(models.Model):
     version_secundaria = models.CharField(max_length=5, blank=True, null=True)
     cantidad_terciaria = models.CharField(max_length=10, blank=True, null=True)
     peso_neto_terciaria = models.CharField(max_length=10, blank=True, null=True)
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_actualizacion = models.DateTimeField(default=timezone.now)
+    fecha_creacion = models.DateTimeField()
+    fecha_actualizacion = models.DateTimeField()
     is_actualizado = models.BooleanField()
     is_new = models.BooleanField()
     id_ubicacion = models.IntegerField()
@@ -82,11 +81,11 @@ class OrdenProduccion(models.Model):
     version_secundaria = models.CharField(max_length=5, blank=True, null=True)
     cantidad_terciaria = models.CharField(max_length=10, blank=True, null=True)
     peso_neto_terciaria = models.CharField(max_length=10, blank=True, null=True)
-    fecha_creacion = models.DateTimeField(default=timezone.now)
+    fecha_creacion = models.DateTimeField()
     estado = models.CharField(max_length=10)
 
     # Campos específicos de OrdenProduccion
-    fecha_final = models.DateTimeField(default=timezone.now)
+    fecha_final = models.DateTimeField()
     planta = models.IntegerField()
     prensa = models.CharField(max_length=5, blank=True, null=True)
     prensa_numero = models.IntegerField(blank=True, null=True)  # prensa_numero
@@ -105,7 +104,7 @@ class OrdenProduccion(models.Model):
     subido_a_firebase = models.BooleanField(default=False)
     inicio_contador_string = models.CharField(max_length=10,  default='0001')
     subido_a_vitacontrol = models.BooleanField(default=False)
-    fecha_continuar = models.DateTimeField(default=timezone.now)
+    fecha_continuar = models.DateTimeField(auto_now=True)
     id_vitacontrol = models.CharField(max_length=15,  default='', blank=True, null=True)
     actualizado_a_vitacontrol = models.BooleanField(default=False)
     actualizado_a_firebase = models.BooleanField(default=False)
@@ -129,8 +128,8 @@ class Palet(models.Model):
     fecha_elaboracion = models.DateTimeField()
     fecha_caducidad = models.DateTimeField()
     numero_palet = models.IntegerField()
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_actualizacion = models.DateTimeField(default=timezone.now)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_actualizacion = models.DateTimeField(auto_now=True)
     id_bodega_origen = models.CharField(max_length=10,  default='0')
     id_bodega_destino = models.CharField(max_length=10,  default='0')
     movimientos_id = ArrayField(models.CharField(max_length=10,  default='0'), blank=True, default=list)
@@ -155,8 +154,8 @@ class Palet(models.Model):
 class Turno(models.Model):
     id = models.AutoField(primary_key=True)
     linea = models.CharField(max_length=5)
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_final = models.DateTimeField(default=timezone.now)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_final = models.DateTimeField()
     fecha_dia_creacion_string = models.CharField(max_length=10, blank=True, null=True)
     estado = models.CharField(max_length=10)
     turno = models.IntegerField()
