@@ -1,6 +1,7 @@
-from django.utils import timezone
+
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.utils import timezone
 
 # Create your models here.
 class Producto(models.Model):
@@ -38,8 +39,8 @@ class Producto(models.Model):
     version_secundaria = models.CharField(max_length=5, blank=True, null=True)
     cantidad_terciaria = models.CharField(max_length=10, blank=True, null=True)
     peso_neto_terciaria = models.CharField(max_length=10, blank=True, null=True)
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_actualizacion = models.DateTimeField(default=timezone.now)
+    fecha_creacion = models.DateTimeField()
+    fecha_actualizacion = models.DateTimeField()
     is_actualizado = models.BooleanField()
     is_new = models.BooleanField()
     id_ubicacion = models.IntegerField()
@@ -129,8 +130,8 @@ class Palet(models.Model):
     fecha_elaboracion = models.DateTimeField()
     fecha_caducidad = models.DateTimeField()
     numero_palet = models.IntegerField()
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_actualizacion = models.DateTimeField(default=timezone.now)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_actualizacion = models.DateTimeField(auto_now=True)
     id_bodega_origen = models.CharField(max_length=10,  default='0')
     id_bodega_destino = models.CharField(max_length=10,  default='0')
     movimientos_id = ArrayField(models.CharField(max_length=10,  default='0'), blank=True, default=list)
@@ -155,8 +156,8 @@ class Palet(models.Model):
 class Turno(models.Model):
     id = models.AutoField(primary_key=True)
     linea = models.CharField(max_length=5)
-    fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_final = models.DateTimeField(default=timezone.now)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_final = models.DateTimeField()
     fecha_dia_creacion_string = models.CharField(max_length=10, blank=True, null=True)
     estado = models.CharField(max_length=10)
     turno = models.IntegerField()
