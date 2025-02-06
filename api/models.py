@@ -38,7 +38,7 @@ class Producto(models.Model):
     version_secundaria = models.CharField(max_length=5, blank=True, null=True)
     cantidad_terciaria = models.CharField(max_length=10, blank=True, null=True)
     peso_neto_terciaria = models.CharField(max_length=10, blank=True, null=True)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_actualizacion = models.DateTimeField(default=timezone.now)
     is_actualizado = models.BooleanField()
     is_new = models.BooleanField()
@@ -82,7 +82,7 @@ class OrdenProduccion(models.Model):
     version_secundaria = models.CharField(max_length=5, blank=True, null=True)
     cantidad_terciaria = models.CharField(max_length=10, blank=True, null=True)
     peso_neto_terciaria = models.CharField(max_length=10, blank=True, null=True)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
     estado = models.CharField(max_length=10)
 
     # Campos específicos de OrdenProduccion
@@ -129,7 +129,7 @@ class Palet(models.Model):
     fecha_elaboracion = models.DateTimeField()
     fecha_caducidad = models.DateTimeField()
     numero_palet = models.IntegerField()
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_actualizacion = models.DateTimeField(default=timezone.now)
     id_bodega_origen = models.CharField(max_length=10,  default='0')
     id_bodega_destino = models.CharField(max_length=10,  default='0')
@@ -155,7 +155,7 @@ class Palet(models.Model):
 class Turno(models.Model):
     id = models.AutoField(primary_key=True)
     linea = models.CharField(max_length=5)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_final = models.DateTimeField(default=timezone.now)
     fecha_dia_creacion_string = models.CharField(max_length=10, blank=True, null=True)
     estado = models.CharField(max_length=10)
